@@ -1,29 +1,25 @@
 
--- when press mousebutton1 increase the rot_speed by 1
-
+-- angle = (angle + dt) % (2 * math.pi)
+-- Simple catcher game. Initial press of the arrow key jumps it. Then holding it down inches it forward. But simultaneouslty it build a ghost trail infront of it that builds longest faster. You can skip forward by pressing the opposite key. The strategy stemming from being able to travel in the reverse direction while building a plan to quickly fly to the other direction. Ultra simple game but want to amke is ultra polished. SOund design, graphics, game feel, settings etc.
 
 
 function love.load()
-    cock = love.graphics.newImage("FNCfPdcXoAsM5yh.jpg")
-    love.window.setMode(1600, 1600, {resizable=true, vsync=0, minwidth=400, minheight=300, centered=true})
-    love.window.setTitle("Hello World")
-    angle = 0
-    rot_speed = 1
-end
-
-function love.mousepressed(x, y, button, istouch)
-    if button == 1 then
-        rot_speed = rot_speed + 1
-    end
-    if button == 2 then
-        rot_speed = rot_speed - 1
-    end
+    player = love.graphics.newImage("player.png")
+    love.window.setMode(720, 720, {resizable=true, vsync=0, minwidth=400, minheight=300, centered=true})
+    love.window.setTitle("GG")
+    xPlayerPos = 600
+    yPlayerPos = 600
 end
 
 function love.update(dt)
-    angle = (angle + dt) % (2 * math.pi)
+    if love.keyboard.isDown("right") then
+        xPlayerPos = xPlayerPos + 1 * dt
+    end
+    if love.keyboard.isDown("left") then
+        xPlayerPos = xPlayerPos - 1
+    end
 end
 
 function love.draw()
-    love.graphics.draw(cock, love.mouse.getX(), love.mouse.getY(),angle*rot_speed)
+    love.graphics.draw(player, xPlayerPos, yPlayerPos)
 end
