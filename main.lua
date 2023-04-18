@@ -7,19 +7,25 @@ function love.load()
     player = love.graphics.newImage("player.png")
     love.window.setMode(720, 720, {resizable=true, vsync=0, minwidth=400, minheight=300, centered=true})
     love.window.setTitle("GG")
-    xPlayerPos = 600
+    xPlayerPos = 300
     yPlayerPos = 600
+    playerSpeed = 1000
 end
 
 function love.update(dt)
     if love.keyboard.isDown("right") then
-        xPlayerPos = xPlayerPos + 1 * dt
+        xPlayerPos = xPlayerPos + (playerSpeed * dt)
     end
     if love.keyboard.isDown("left") then
-        xPlayerPos = xPlayerPos - 1
+        xPlayerPos = xPlayerPos - (playerSpeed * dt)
     end
 end
 
+
 function love.draw()
     love.graphics.draw(player, xPlayerPos, yPlayerPos)
+    love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 10)
+    love.graphics.print("X: " .. xPlayerPos, 10, 30)
+    love.graphics.print("Y: " .. yPlayerPos, 10, 50)
+    love.graphics.print("Player Speed: " .. playerSpeed, 10, 70)
 end
