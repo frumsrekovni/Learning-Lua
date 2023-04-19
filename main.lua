@@ -6,7 +6,7 @@ WINDOW_WIDTH = 720
 WINDOW_HEIGHT = 720
 
 function love.load()
-    player = love.graphics.newImage("player.png")
+    player = love.graphics.newImage("the player.png")
     love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {resizable=true, vsync=0, minwidth=400, minheight=300, centered=true})
     love.window.setTitle("GG")
     xPlayerPos = 300
